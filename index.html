@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Arxon AI — Next-Gen AI Suite by ArmanX AI</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.128.0/build/three.module.js"}}</script>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="preloader">
+        <div class="pre-ring"></div>
+        <div class="pre-logo">ARXON AI</div>
+        <div class="pre-sub">summoning intelligence</div>
+    </div>
+
+    <div id="canvas-container"></div>
+
+    <div class="app-wrapper">
+        <nav class="navbar">
+            <div class="logo" onclick="showPage('home');history.pushState(null,'','#home')">
+                <img class="logo-img" src="logoo.png" alt="Arxon AI Logo">
+                <span class="logo-text">ARXON AI</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#home" data-page="home">Home</a></li>
+                <li><a href="#chat" data-page="chat">Chat</a></li>
+                <li><a href="#settings" data-page="settings">Settings</a></li>
+                <li><a href="#api" data-page="api">API Docs</a></li>
+                <li><a href="#about" data-page="about">About</a></li>
+                <li><a href="#contact" data-page="contact">Contact</a></li>
+                <li><a href="#privacy" data-page="privacy">Privacy</a></li>
+                <li><a href="#terms" data-page="terms">Terms</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <button class="theme-toggle desktop-only" id="themeToggle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+                    </svg>
+                    Light
+                </button>
+                <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- MOBILE MENU DRAWER -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-menu-links">
+                <li><a href="#home" data-page="home">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                        Home</a></li>
+                <li><a href="#chat" data-page="chat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                        </svg>
+                        Chat</a></li>
+                <li><a href="#settings" data-page="settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                        </svg>
+                        Settings</a></li>
+                <li><a href="#api" data-page="api">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                        API Docs</a></li>
+                <li><a href="#about" data-page="about">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                        </svg>
+                        About</a></li>
+                <li><a href="#contact" data-page="contact">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path
+                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                        </svg>
+                        Contact</a></li>
+                <li><a href="#privacy" data-page="privacy">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                        Privacy</a></li>
+                <li><a href="#terms" data-page="terms">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10 9 9 9 8 9" />
+                        </svg>
+                        Terms</a></li>
+            </ul>
+            <div class="mobile-menu-bottom">
+                <button class="theme-toggle" id="themeToggleMobile">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+                    </svg>
+                    Toggle Theme
+                </button>
+            </div>
+        </div>
+
+        <main id="page-content">
+
+            <!-- HOME -->
+            <div id="home" class="page active-page">
+                <div class="hero">
+                    <div class="hero-eyebrow">
+                        <div class="hero-dot"></div>Next-Gen AI Suite &nbsp;·&nbsp; Built in Peshawar, Pakistan
+                    </div>
+                    <h1><span class="line1">Arxon AI</span><span class="line2">Intelligence without limits</span></h1>
+                    <p class="hero-desc">Next-generation AI suite for enterprises and creators. Reasoning, agentic
+                        workflows, and ultra-fast inference — all in one beautifully crafted platform.</p>
+                    <div class="hero-ctas">
+                        <button class="btn btn-primary" id="startChatBtnNav">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                            </svg>
+                            Start chatting
+                        </button>
+                        <button class="btn btn-ghost" onclick="showPage('about');history.pushState(null,'','#about')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" />
+                                <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
+                            </svg>
+                            Our story
+                        </button>
+                        <button class="btn btn-ghost" onclick="showPage('api');history.pushState(null,'','#api')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="16 18 22 12 16 6" />
+                                <polyline points="8 6 2 12 8 18" />
+                            </svg>
+                            API docs
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <h3>2.4M+</h3>
+                        <p>Requests served</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>&lt;800ms</h3>
+                        <p>Avg response time</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>99.9%</h3>
+                        <p>Uptime SLA</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>128K</h3>
+                        <p>Context window</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>20+</h3>
+                        <p>Languages</p>
+                    </div>
+                </div>
+
+                <div class="section-intro">
+                    <div class="intro-card" data-href="#chat">
+                        <span class="ic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                            </svg></span>
+                        <h4>AI Chat Studio</h4>
+                        <p>Multi-model interactive assistant. Switch models mid-conversation.</p>
+                    </div>
+                    <div class="intro-card" data-href="#api">
+                        <span class="ic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <polyline points="16 18 22 12 16 6" />
+                                <polyline points="8 6 2 12 8 18" />
+                            </svg></span>
+                        <h4>Developer API</h4>
+                        <p>OpenAI-compatible endpoints with streaming and enterprise features.</p>
+                    </div>
+                    <div class="intro-card" data-href="#about">
+                        <span class="ic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                <path d="M2 17l10 5 10-5" />
+                                <path d="M2 12l10 5 10-5" />
+                            </svg></span>
+                        <h4>About Arxon</h4>
+                        <p>Founded in Pakistan — democratizing AI for the global south.</p>
+                    </div>
+                    <div class="intro-card" data-href="#contact">
+                        <span class="ic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                                <path d="M16 3.13a4 4 0 010 7.75" />
+                            </svg></span>
+                        <h4>Partnerships</h4>
+                        <p>24/7 support, affiliate program, and enterprise SLAs.</p>
+                    </div>
+                </div>
+
+                <h2 class="section-heading">Flagship Models</h2>
+                <div class="models-grid">
+                    <div class="model-card">
+                        <div class="mc-tag">armanxai/main</div>
+                        <h3>Arxon Main</h3>
+                        <p>Balanced intelligence for everyday tasks, coding, and creative writing. The reliable
+                            workhorse.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="mc-tag">armanxai/agentic</div>
+                        <h3>Arxon Agentic</h3>
+                        <p>Advanced tool use, multi-step planning, and API orchestration for complex autonomous
+                            workflows.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="mc-tag">armanxai/reasoning</div>
+                        <h3>Arxon Reasoning</h3>
+                        <p>Deep logical reasoning, mathematics, and research-grade analysis. Built for the hardest
+                            problems.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="mc-tag">armanxai/fast</div>
+                        <h3>Arxon Fast</h3>
+                        <p>Sub-200ms latency ideal for real-time assistants, chatbots, and live applications.</p>
+                    </div>
+                </div>
+
+                <h2 class="section-heading">Why teams choose Arxon</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <path d="M18 20V10" />
+                                <path d="M12 20V4" />
+                                <path d="M6 20v-6" />
+                            </svg></div>
+                        <div class="fc-text">
+                            <h4>OpenAI-compatible API</h4>
+                            <p>Seamless migration. Drop-in replacement with zero refactoring needed.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                            </svg></div>
+                        <div class="fc-text">
+                            <h4>Real-time streaming</h4>
+                            <p>Token-by-token streaming responses for snappy, live-feeling interactions.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0110 0v4" />
+                            </svg></div>
+                        <div class="fc-text">
+                            <h4>Enterprise security</h4>
+                            <p>AES-256 at rest, TLS 1.3 in transit. SOC 2 Type II compliant.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                            </svg></div>
+                        <div class="fc-text">
+                            <h4>20+ languages</h4>
+                            <p>Cultural nuance and idiomatic understanding across global languages.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="16" y1="13" x2="8" y2="13" />
+                                <line x1="16" y1="17" x2="8" y2="17" />
+                            </svg></div>
+                        <div class="fc-text">
+                            <h4>128K context window</h4>
+                            <p>Ingest entire codebases, long documents, and multi-turn conversations.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <circle cx="12" cy="12" r="3" />
+                                <path
+                                    d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
+                            </svg></div>
+                        <div class="fc-text">
+                            <h4>Fine-tuning ready</h4>
+                            <p>Train on your own data for domain-specific expertise and brand voice.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-heading">Simple, honest pricing</h2>
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <div class="pc-name">Free</div>
+                        <div class="pc-price">$0 <span>/ month</span></div>
+                        <div class="pc-desc">Perfect for exploring and hobby projects.</div>
+                        <ul>
+                            <li>10,000 requests / month</li>
+                            <li>Arxon Main &amp; Fast models</li>
+                            <li>60 req/min rate limit</li>
+                            <li>Community support</li>
+                        </ul>
+                        <button class="btn btn-ghost" style="width:100%">Get started free</button>
+                    </div>
+                    <div class="price-card featured">
+                        <div class="badge">MOST POPULAR</div>
+                        <div class="pc-name">Pro</div>
+                        <div class="pc-price">$49 <span>/ month</span></div>
+                        <div class="pc-desc">For professionals and growing teams.</div>
+                        <ul>
+                            <li>500,000 requests / month</li>
+                            <li>All models including Agentic</li>
+                            <li>500 req/min rate limit</li>
+                            <li>Priority inference</li>
+                            <li>Email support</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width:100%">Start Pro trial</button>
+                    </div>
+                    <div class="price-card">
+                        <div class="pc-name">Enterprise</div>
+                        <div class="pc-price">Custom</div>
+                        <div class="pc-desc">Tailored for large-scale deployments.</div>
+                        <ul>
+                            <li>Unlimited requests</li>
+                            <li>Custom fine-tuning</li>
+                            <li>Dedicated inference cluster</li>
+                            <li>99.9% SLA guarantee</li>
+                            <li>24/7 dedicated support</li>
+                        </ul>
+                        <button class="btn btn-ghost" style="width:100%"
+                            onclick="showPage('contact');history.pushState(null,'','#contact')">Contact sales</button>
+                    </div>
+                </div>
+
+                <h2 class="section-heading">Trusted by innovators</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <p>Arxon's reasoning model solved complex logic problems that other AIs failed on. It's been a
+                            genuine game changer for our research pipeline.</p>
+                        <div class="t-author">
+                            <div class="t-avatar">SK</div>
+                            <div>
+                                <div class="t-name">Sarah K.</div>
+                                <div class="t-role">CTO at Aether Labs</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p>The speed of Arxon Fast is incredible. We integrated it into our customer support in under an
+                            hour with zero refactoring of our existing code.</p>
+                        <div class="t-author">
+                            <div class="t-avatar">RM</div>
+                            <div>
+                                <div class="t-name">Raza M.</div>
+                                <div class="t-role">Lead Engineer, Fintech startup</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p>Finally an AI built with Pakistan's talent. The agentic model handles our multi-step API
+                            workflows flawlessly — better than any alternative we tried.</p>
+                        <div class="t-author">
+                            <div class="t-avatar">FZ</div>
+                            <div>
+                                <div class="t-name">Fatima Z.</div>
+                                <div class="t-role">Product Manager</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-banner">
+                    <h2>Ready to transform your workflow?</h2>
+                    <p>Join 200+ enterprises already building with Arxon AI.</p>
+                    <button class="btn btn-primary"
+                        onclick="showPage('contact');history.pushState(null,'','#contact')">Talk to our team →</button>
+                </div>
+            </div>
+
+            <!-- CHAT -->
+            <div id="chat" class="page">
+                <div class="chat-full-container">
+                    <div class="chat-header-area">
+                        <h2>✦ Arxon Chat Studio</h2>
+                        <div class="chat-model-selector" id="fullChatModelBar"></div>
+                    </div>
+                    <div class="chat-messages-area" id="fullChatMessages"></div>
+                    <div class="chat-input-area">
+                        <textarea id="fullChatInput" rows="1" placeholder="Ask anything — Arxon is ready…"></textarea>
+                        <button id="fullChatSendBtn">Send ↑</button>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="chat-action-btn" id="clearChatBtn">↺ Clear chat</button>
+                        <button class="chat-action-btn" id="shareChatBtn">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="18" cy="5" r="3" />
+                                <circle cx="6" cy="12" r="3" />
+                                <circle cx="18" cy="19" r="3" />
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                            </svg>
+                            Share log
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SETTINGS -->
+            <div id="settings" class="page">
+                <h2 class="section-heading" style="margin-top:0">Settings</h2>
+                <div class="settings-layout">
+                    <div class="settings-nav">
+                        <button data-settings="appearance" class="active-sett">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <circle cx="12" cy="12" r="5" />
+                                <line x1="12" y1="1" x2="12" y2="3" />
+                                <line x1="12" y1="21" x2="12" y2="23" />
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                                <line x1="1" y1="12" x2="3" y2="12" />
+                                <line x1="21" y1="12" x2="23" y2="12" />
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                            </svg>
+                            Appearance
+                        </button>
+                        <button data-settings="quota">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <line x1="18" y1="20" x2="18" y2="10" />
+                                <line x1="12" y1="20" x2="12" y2="4" />
+                                <line x1="6" y1="20" x2="6" y2="14" />
+                            </svg>
+                            Usage quota
+                        </button>
+                        <button data-settings="api">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                <line x1="9" y1="9" x2="15" y2="15" />
+                                <line x1="15" y1="9" x2="9" y2="15" />
+                            </svg>
+                            API Keys
+                        </button>
+                        <button data-settings="notifications">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                <path d="M13.73 21a2 2 0 01-3.46 0" />
+                            </svg>
+                            Notifications
+                        </button>
+                        <button data-settings="danger">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <path
+                                    d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                                <line x1="12" y1="9" x2="12" y2="13" />
+                                <line x1="12" y1="17" x2="12.01" y2="17" />
+                            </svg>
+                            Danger zone
+                        </button>
+                    </div>
+                    <div class="settings-content">
+                        <div id="appearance-settings">
+                            <div class="settings-block">
+                                <h3>Theme preference</h3>
+                                <div class="sb-desc">Switch between dark and light mode to match your environment.</div>
+                                <button id="darkLightToggleSettings" class="btn btn-ghost">Toggle dark / light</button>
+                            </div>
+                            <div class="settings-block">
+                                <h3>Accent color</h3>
+                                <div class="sb-desc">Custom accent colors are coming in the next release. Stay tuned!
+                                </div>
+                                <div style="display:flex;gap:10px">
+                                    <div
+                                        style="width:32px;height:32px;border-radius:50%;background:var(--gold);border:2px solid white">
+                                    </div>
+                                    <div
+                                        style="width:32px;height:32px;border-radius:50%;background:#5b8dd9;opacity:0.4">
+                                    </div>
+                                    <div
+                                        style="width:32px;height:32px;border-radius:50%;background:#5dba7e;opacity:0.4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="quota-settings" style="display:none">
+                            <div class="settings-block">
+                                <h3>Monthly API quota</h3>
+                                <div class="sb-desc">Resets on the 1st of every month.</div>
+                                <div class="quota-bar">
+                                    <div class="quota-fill" id="quotaFill"></div>
+                                </div>
+                                <p id="quotaText" style="font-size:0.85rem;color:var(--text2)">Used 48% of 10,000
+                                    requests</p>
+                                <p style="margin-top:1rem;font-size:0.85rem">💡 <a href="#"
+                                        style="color:var(--gold)">Upgrade to Pro</a> for 500K requests + priority
+                                    inference.</p>
+                            </div>
+                        </div>
+                        <div id="api-settings" style="display:none">
+                            <div class="settings-block">
+                                <h3>API Key</h3>
+                                <div class="sb-desc">Enter your API key to enable real-time chat with Arxon AI. Get your key from the <a href="#api" style="color:var(--gold)">API Docs</a>.</div>
+                                <input type="password" id="apiKeyInput" placeholder="sk-your-api-key-here" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-family:var(--font-mono);font-size:0.9rem">
+                                <button class="btn btn-ghost" id="saveApiKeyBtn" style="margin-top:0.5rem">Save API Key</button>
+                                <p id="apiKeyStatus" style="font-size:0.85rem;color:var(--text2);margin-top:0.5rem">API Key not set. Chat will use demo mode.</p>
+                            </div>
+                        </div>
+                        <div id="notifications" style="display:none">
+                            <div class="settings-block">
+                                <h3>Email alerts</h3>
+                                <div class="sb-desc">Choose what you want to be notified about.</div>
+                                <label><input type="checkbox" id="notifQuota" checked> Notify when quota reaches
+                                    80%</label>
+                                <label><input type="checkbox" id="notifUpdates"> Product updates and new models</label>
+                                <label><input type="checkbox"> Weekly usage digest</label>
+                                <button class="btn btn-ghost" id="saveNotifBtn" style="margin-top:0.5rem">Save
+                                    preferences</button>
+                            </div>
+                        </div>
+                        <div id="danger-settings" style="display:none">
+                            <div class="settings-block">
+                                <h3>Danger zone</h3>
+                                <div class="sb-desc">Deleting your account will permanently erase all API keys,
+                                    conversation history, and personal data. This action cannot be undone.</div>
+                                <button id="deleteAccountBtn" class="btn btn-danger">Delete my account</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- API DOCS -->
+            <div id="api" class="page">
+                <h2 class="section-heading" style="margin-top:0">API Reference</h2>
+                <div class="settings-block" style="margin-bottom:1.5rem">
+                    <p style="font-size:0.9rem;margin-bottom:0.5rem">Base URL</p>
+                    <code
+                        style="color:var(--gold);font-family:var(--font-mono);font-size:0.9rem">https://arxon.armanxai.com/api/v1</code>
+                    <p style="font-size:0.85rem;color:var(--text2);margin-top:0.75rem">Authenticate with: <code
+                            style="color:var(--gold)">Authorization: Bearer YOUR_API_KEY</code></p>
+                </div>
+                <h3 style="margin-bottom:0.75rem;font-size:1rem;color:var(--text2)">Quick start</h3>
+                <div class="code-tabs" id="codeTabs">
+                    <div class="code-tab active" data-lang="python">Python</div>
+                    <div class="code-tab" data-lang="js">JavaScript</div>
+                    <div class="code-tab" data-lang="curl">cURL</div>
+                </div>
+                <pre id="codeBlock">import openai
+
+openai.api_base = "https://arxon.armanxai.com/api/v1"
+openai.api_key  = "sk-your-key-here"
+
+response = openai.ChatCompletion.create(
+    model="armanxai/main",
+    messages=[{"role": "user", "content": "Hello, Arxon!"}],
+    stream=True
+)
+
+for chunk in response:
+    print(chunk.choices[0].delta.get("content", ""), end="")</pre>
+                <h3 style="margin:1.5rem 0 0.75rem;font-size:1rem;color:var(--text2)">Endpoints</h3>
+                <div class="endpoint-card"><span class="method-badge method-post">POST</span><code
+                        style="font-family:var(--font-mono);font-size:0.88rem;color:var(--gold)">/chat/completions</code>
+                    <p style="font-size:0.83rem;color:var(--text2);margin-top:0.5rem">Standard chat completions.
+                        Supports streaming via <code>stream: true</code>.</p>
+                </div>
+                <div class="endpoint-card"><span class="method-badge method-get">GET</span><code
+                        style="font-family:var(--font-mono);font-size:0.88rem;color:var(--gold)">/models</code>
+                    <p style="font-size:0.83rem;color:var(--text2);margin-top:0.5rem">List all available models and
+                        their capabilities.</p>
+                </div>
+                <div class="endpoint-card"><span class="method-badge method-post">POST</span><code
+                        style="font-family:var(--font-mono);font-size:0.88rem;color:var(--gold)">/embeddings</code>
+                    <p style="font-size:0.83rem;color:var(--text2);margin-top:0.5rem">Generate vector embeddings for
+                        semantic search and RAG.</p>
+                </div>
+                <h3 style="margin:1.5rem 0 0.75rem;font-size:1rem;color:var(--text2)">Rate limits</h3>
+                <div class="models-grid" style="margin:0">
+                    <div class="model-card">
+                        <div class="mc-tag">Free tier</div>
+                        <h3>60 req / min</h3>
+                        <p>10K requests per month. All standard models.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="mc-tag">Pro tier</div>
+                        <h3>500 req / min</h3>
+                        <p>500K requests per month. Priority inference queues.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="mc-tag">Enterprise</div>
+                        <h3>Custom limits</h3>
+                        <p>Dedicated infrastructure with SLA guarantees.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT -->
+            <div id="about" class="page">
+                <h2 class="section-heading" style="margin-top:0">About Arxon AI</h2>
+                <p style="font-size:1.05rem;color:var(--text2);max-width:680px;line-height:1.8;margin-bottom:2rem">Arxon
+                    AI is the flagship product of <strong style="color:var(--text)">ArmanX AI</strong>, founded by
+                    <strong style="color:var(--gold)">Arman Ghavas</strong> in Peshawar, Pakistan. Our mission:
+                    democratize cutting-edge AI for the global south and build world-class AI infrastructure in
+                    Pakistan.</p>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="ac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                <path d="M2 17l10 5 10-5" />
+                                <path d="M2 12l10 5 10-5" />
+                            </svg></div>
+                        <div>
+                            <h3>Our philosophy</h3>
+                            <p>We believe AI should be transparent, fast, and accessible. Every model is optimized for
+                                both resource efficiency and raw intelligence — no compromise.</p>
+                        </div>
+                    </div>
+                    <div class="about-card">
+                        <div class="ac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                            </svg></div>
+                        <div>
+                            <h3>Global impact</h3>
+                            <p>Headquartered in Peshawar, we're building a world-class AI hub in Pakistan. Our team
+                                works remotely across 4 continents and 12 countries.</p>
+                        </div>
+                    </div>
+                    <div class="about-card">
+                        <div class="ac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <circle cx="12" cy="8" r="6" />
+                                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                            </svg></div>
+                        <div>
+                            <h3>Recognitions</h3>
+                            <p>Winner of Pakistan's National AI Challenge 2025, featured in TechAsia, and trusted by
+                                200+ enterprises across South Asia and beyond.</p>
+                        </div>
+                    </div>
+                    <div class="about-card">
+                        <div class="ac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <path
+                                    d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+                            </svg></div>
+                        <div>
+                            <h3>Research-first</h3>
+                            <p>We publish openly and collaborate with academic institutions. Our reasoning models come
+                                directly from our in-house research lab.</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top:2rem;font-size:0.88rem;color:var(--text2)">📍 Peshawar, Pakistan &nbsp;|&nbsp; 🌐
+                    armanxai.com &nbsp;|&nbsp; 📧 hello@armanxai.com</p>
+            </div>
+
+            <!-- CONTACT -->
+            <div id="contact" class="page">
+                <h2 class="section-heading" style="margin-top:0">Contact &amp; Support</h2>
+                <p style="color:var(--text2);margin-bottom:0.5rem">We're here to help you succeed with Arxon AI. Reach
+                    out anytime.</p>
+                <div class="contact-info-grid">
+                    <div class="contact-card">
+                        <span class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg></span>
+                        <strong>Email</strong>
+                        <p><a href="mailto:hello@armanxai.com">hello@armanxai.com</a><br><a
+                                href="mailto:support@armanxai.com">support@armanxai.com</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <span class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                            </svg></span>
+                        <strong>Discord</strong>
+                        <p>Join our community of 5k+ developers.<br><a href="#">discord.gg/armanxai</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <span class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <path
+                                    d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                            </svg></span>
+                        <strong>Twitter / X</strong>
+                        <p>Daily updates and model releases.<br><a href="#">@ArmanX_AI</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <span class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.7">
+                                <path
+                                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                            </svg></span>
+                        <strong>Office</strong>
+                        <p>+92 300 1234567<br>Peshawar, Pakistan</p>
+                    </div>
+                </div>
+                <div class="affiliate-banner">
+                    <div>
+                        <h3>Affiliate Program</h3>
+                        <p>Earn 20% recurring commission for every referral. 30-day cookie window, global payouts via
+                            PayPal or bank transfer.</p>
+                    </div>
+                    <button class="btn btn-primary" id="affiliateBtn">Join now →</button>
+                </div>
+            </div>
+
+            <!-- PRIVACY -->
+            <div id="privacy" class="page legal-text">
+                <h2>Privacy Policy</h2>
+                <p>Last updated: April 2026. ArmanX AI ("we", "us") respects your privacy and is committed to protecting
+                    it.</p>
+                <h3>1. Data collection</h3>
+                <p>We collect email addresses for authentication, API usage logs for debugging, and anonymized
+                    conversation data to improve model quality. We never sell your data.</p>
+                <h3>2. Data encryption</h3>
+                <p>All data at rest is AES-256 encrypted. In transit via TLS 1.3. API keys are hashed using bcrypt and
+                    never stored in plaintext.</p>
+                <h3>3. User rights</h3>
+                <p>You may request deletion of your data at any time via support@armanxai.com. We process deletion
+                    requests within 30 days.</p>
+                <h3>4. GDPR &amp; CCPA compliance</h3>
+                <p>We comply with EU and California privacy frameworks. Contact our DPO at dpo@armanxai.com for any
+                    privacy concerns.</p>
+            </div>
+
+            <!-- TERMS -->
+            <div id="terms" class="page legal-text">
+                <h2>Terms of Service</h2>
+                <h3>1. Acceptable use</h3>
+                <p>You may not use Arxon AI for illegal activities, harassment, generating malware, or producing harmful
+                    content of any kind.</p>
+                <h3>2. API limits &amp; quotas</h3>
+                <p>Free tier: 10,000 requests/month. Paid plans start at $49/month. Overuse without upgrade may result
+                    in throttling.</p>
+                <h3>3. Intellectual property</h3>
+                <p>You retain full ownership of your input and the outputs generated for you. We do not claim any rights
+                    over your content.</p>
+                <h3>4. Liability</h3>
+                <p>Services are provided "as is" without warranties. Our liability is limited to fees paid in the
+                    preceding 30 days.</p>
+            </div>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Arxon AI by ArmanX AI — Crafted in Peshawar, Pakistan 🇵🇰</p>
+            <div class="footer-links">
+                <a href="#privacy" data-page="privacy">Privacy</a>
+                <a href="#terms" data-page="terms">Terms</a>
+                <a href="#contact" data-page="contact">Contact</a>
+                <a href="#api" data-page="api">API</a>
+                <a href="mailto:hello@armanxai.com">hello@armanxai.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- FLOATING WIDGET -->
+    <div class="chat-fab" id="chatFabBtn">
+        <div class="fab-pulse"></div>
+        <svg viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
+        </svg>
+    </div>
+
+    <div class="chat-widget hidden" id="chatWidget">
+        <div class="widget-header">
+            <div class="widget-header-avatar">✦</div>
+            <div class="widget-header-info">
+                <h3>Arxon Assistant</h3>
+                <div class="w-status">Online · Ready</div>
+            </div>
+            <button class="close-widget" id="closeWidgetBtn">✕</button>
+        </div>
+        <div id="widgetInner" style="display:flex;flex-direction:column;flex:1;overflow:hidden"></div>
+    </div>
+
+    <!-- GLOBAL MODAL -->
+    <div id="globalLoginModal" class="global-modal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeGlobalModal">✕</button>
+            <div class="modal-deco">✦</div>
+            <h2>Welcome to Arxon</h2>
+            <div class="modal-subtitle">Sign in to access the full platform.<br>Your intelligence upgrade awaits.</div>
+            <input type="email" id="globalEmail" placeholder="you@example.com">
+            <button id="globalLoginBtn" class="btn btn-primary" style="width:100%;justify-content:center">Access
+                platform →</button>
+            <div class="modal-divider">or continue with</div>
+            <div class="social-login">
+                <button class="social-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 8v4l3 3" />
+                    </svg>
+                    Google
+                </button>
+                <button class="social-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                    GitHub
+                </button>
+            </div>
+            <div class="modal-hint">Demo: any email works · No credit card required</div>
+        </div>
+    </div>
+
+    <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.128.0/build/three.module.js"}}</script>
+    <script type="module">
+        import * as THREE from 'three';
+
+        // 3D SCENE
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050507, 0.007);
+        const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 1000);
+        camera.position.set(0, 1, 9);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(innerWidth, innerHeight);
+        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        scene.add(new THREE.AmbientLight(0x111118));
+        const gl = new THREE.PointLight(0xd4af37, 2, 30); gl.position.set(4, 5, 5); scene.add(gl);
+        const bl = new THREE.PointLight(0xffcc44, 0.8, 20); bl.position.set(-3, 2, -3); scene.add(bl);
+        const fl = new THREE.DirectionalLight(0xffffff, 0.5); fl.position.set(1, 2, 2); scene.add(fl);
+
+        const grp = new THREE.Group();
+        const mat1 = new THREE.MeshStandardMaterial({ color: 0xd4af37, emissive: 0xd4af37, emissiveIntensity: 0.3, transparent: true, opacity: 0.2 });
+        const mat2 = new THREE.MeshStandardMaterial({ color: 0xd4af37, wireframe: true, emissive: 0xd4af37, emissiveIntensity: 0.45 });
+        const mat3 = new THREE.MeshStandardMaterial({ color: 0xf0d060, wireframe: true, emissive: 0xf0d060, emissiveIntensity: 0.25 });
+        grp.add(new THREE.Mesh(new THREE.IcosahedronGeometry(0.9, 2), mat1));
+        grp.add(new THREE.Mesh(new THREE.IcosahedronGeometry(1.1, 1), mat2));
+        grp.add(new THREE.Mesh(new THREE.IcosahedronGeometry(1.28, 0), mat3));
+        scene.add(grp);
+
+        const rm = new THREE.MeshStandardMaterial({ color: 0xd4af37, emissive: 0xd4af37, emissiveIntensity: 0.5 });
+        const rm2 = new THREE.MeshStandardMaterial({ color: 0xf0d060, emissive: 0xf0d060, emissiveIntensity: 0.3 });
+        const r1 = new THREE.Mesh(new THREE.TorusGeometry(1.55, 0.04, 64, 300), rm); scene.add(r1);
+        const r2 = new THREE.Mesh(new THREE.TorusGeometry(1.88, 0.025, 64, 300), rm2); scene.add(r2);
+        const r3 = new THREE.Mesh(new THREE.TorusGeometry(2.15, 0.015, 64, 200), rm2); scene.add(r3);
+
+        const orb = new THREE.Mesh(new THREE.SphereGeometry(0.45, 48, 48), new THREE.MeshStandardMaterial({ color: 0xd4af37, emissive: 0xd4af37, emissiveIntensity: 0.7, transparent: true, opacity: 0.25 }));
+        orb.position.set(4, 0.5, 1); scene.add(orb);
+
+        const isMobile = innerWidth < 768;
+        const N = isMobile ? 500 : 1600;
+        const pg = new THREE.BufferGeometry();
+        const pp = new Float32Array(N * 3);
+        for (let i = 0; i < N; i++) { const r = 6.5 * Math.cbrt(Math.random()), t = Math.random() * Math.PI * 2, p = Math.acos(2 * Math.random() - 1); pp[i * 3] = r * Math.sin(p) * Math.cos(t); pp[i * 3 + 1] = r * Math.sin(p) * Math.sin(t); pp[i * 3 + 2] = r * Math.cos(p); }
+        pg.setAttribute('position', new THREE.BufferAttribute(pp, 3));
+        // On mobile, reduce particle opacity so they don't overpower text
+        const particleOpacity = isMobile ? 0.4 : 0.75;
+        const ps = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0xd4af37, size: isMobile ? 0.04 : 0.06, transparent: true, opacity: particleOpacity }));
+        scene.add(ps);
+
+        const dg = new THREE.BufferGeometry();
+        const dp = [];
+        for (let i = 0; i < (isMobile ? 800 : 3000); i++)dp.push((Math.random() - 0.5) * 40, (Math.random() - 0.5) * 22, (Math.random() - 0.5) * 30 - 12);
+        dg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(dp), 3));
+        const dust = new THREE.Points(dg, new THREE.PointsMaterial({ color: 0xffe090, size: 0.025, transparent: true, opacity: isMobile ? 0.2 : 0.4 }));
+        scene.add(dust);
+
+        const sg = new THREE.BufferGeometry();
+        const sp = [];
+        for (let i = 0; i < (isMobile ? 800 : 2500); i++)sp.push((Math.random() - 0.5) * 250, (Math.random() - 0.5) * 120, (Math.random() - 0.5) * 100 - 50);
+        sg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(sp), 3));
+        const stars = new THREE.Points(sg, new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, transparent: true, opacity: isMobile ? 0.3 : 0.6 }));
+        scene.add(stars);
+
+        let t = 0;
+        function animate() {
+            t += 0.012;
+            grp.rotation.y = t * 0.28; grp.rotation.x = Math.sin(t * 0.18) * 0.18;
+            r1.rotation.z = t * 0.5; r1.rotation.x = t * 0.28;
+            r2.rotation.z = -t * 0.38; r2.rotation.y = t * 0.2;
+            r3.rotation.x = t * 0.15; r3.rotation.z = t * 0.22;
+            orb.position.y = 0.5 + Math.sin(t * 1.1) * 0.3; orb.position.x = 4 + Math.cos(t * 0.6) * 0.5;
+            ps.rotation.y = t * 0.035;
+            dust.rotation.x = t * 0.018; dust.rotation.y = t * 0.012;
+            stars.rotation.y = t * 0.008;
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+        animate();
+        addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+
+        // PRELOADER
+        window.addEventListener('load', () => setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 1800));
+
+        // ===== HAMBURGER MENU =====
+        const hamburger = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+
+        function toggleMenu(force) {
+            menuOpen = force !== undefined ? force : !menuOpen;
+            hamburger.classList.toggle('open', menuOpen);
+            mobileMenu.classList.toggle('open', menuOpen);
+            document.body.style.overflow = menuOpen ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', () => toggleMenu());
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const pg = link.getAttribute('href').substring(1);
+                history.pushState(null, '', '#' + pg);
+                showPage(pg);
+                toggleMenu(false);
+                // update active states
+                document.querySelectorAll('.mobile-menu-links a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // ===== ROUTING =====
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-links a, footer a[data-page]');
+        window.showPage = function (id) {
+            pages.forEach(p => p.classList.remove('active-page'));
+            const pg = document.getElementById(id);
+            if (pg) pg.classList.add('active-page');
+            document.querySelectorAll('.nav-links a').forEach(l => {
+                const h = l.getAttribute('href').substring(1);
+                l.classList.toggle('active', h === id);
+            });
+            document.querySelectorAll('.mobile-menu-links a').forEach(l => {
+                const h = l.getAttribute('href').substring(1);
+                l.classList.toggle('active', h === id);
+            });
+            if (id === 'chat') initFullChat();
+            if (id === 'settings') initSettings();
+            if (id === 'api') initApi();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        navLinks.forEach(l => {
+            l.addEventListener('click', e => { e.preventDefault(); const pg = l.getAttribute('href').substring(1); history.pushState(null, '', '#' + pg); showPage(pg); });
+        });
+        document.querySelectorAll('.intro-card').forEach(c => {
+            c.addEventListener('click', () => { const t = c.getAttribute('data-href'); if (t) { history.pushState(null, '', '' + t); showPage(t.substring(1)); } });
+        });
+        document.getElementById('startChatBtnNav')?.addEventListener('click', () => { history.pushState(null, '', '#chat'); showPage('chat'); });
+        document.getElementById('affiliateBtn')?.addEventListener('click', () => alert('Join the affiliate program: email affiliate@armanxai.com'));
+        window.addEventListener('hashchange', () => { const h = location.hash.substring(1) || 'home'; showPage(h); });
+        const initHash = location.hash.substring(1) || 'home';
+        showPage(initHash);
+
+        // ===== FULL CHAT =====
+        let msgs = [{ role: 'ai', content: "✨ Hello! I'm Arxon AI. Select a model above and let's build something extraordinary together." }];
+        let curModel = 'Arxon Main', typing = false;
+        const models = ['Arxon Main', 'Arxon Agentic', 'Arxon Reasoning', 'Arxon Fast'];
+        const modelMap = {
+            'Arxon Main': 'armanxai/main',
+            'Arxon Agentic': 'armanxai/agentic',
+            'Arxon Reasoning': 'armanxai/reasoning',
+            'Arxon Fast': 'armanxai/fast'
+        };
+        function esc(s) { return s.replace(/[&<>"]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m])) }
+        function renderChat() {
+            const md = document.getElementById('fullChatMessages');
+            const mb = document.getElementById('fullChatModelBar');
+            if (!md) return;
+            mb.innerHTML = models.map(m => `<div class="model-badge ${m === curModel ? 'active' : ''}" data-model="${m}">${m}</div>`).join('');
+            md.innerHTML = msgs.map(m => `<div class="chat-message ${m.role}"><div class="msg-avatar">${m.role === 'ai' ? '✦' : 'U'}</div><div class="msg-bubble-full">${esc(m.content)}</div></div>`).join('') + (typing ? `<div class="chat-message ai"><div class="msg-avatar">✦</div><div class="typing-indicator"><div class="typing-dots"><span></span><span></span><span></span></div> Arxon composing…</div></div>` : '');
+            md.scrollTop = md.scrollHeight;
+            document.querySelectorAll('#fullChatModelBar .model-badge').forEach(el => el.addEventListener('click', e => { curModel = e.target.dataset.model; renderChat(); }));
+        }
+        function sendMsg() {
+            const inp = document.getElementById('fullChatInput');
+            const txt = inp?.value.trim();
+            if (!txt || typing) return;
+            msgs.push({ role: 'user', content: txt }); inp.value = ''; renderChat();
+            typing = true; renderChat();
+            const apiKey = localStorage.getItem('arxon-api-key');
+            if (apiKey) {
+                // Real API call
+                fetch('https://arxon.armanxai.com/api/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: modelMap[curModel],
+                        messages: msgs.slice(-10), // last 10 messages for context
+                        stream: true
+                    })
+                }).then(res => {
+                    if (!res.ok) throw new Error(`API Error: ${res.status}`);
+                    const reader = res.body.getReader();
+                    const decoder = new TextDecoder();
+                    let aiMsg = '';
+                    function readChunk() {
+                        reader.read().then(({ done, value }) => {
+                            if (done) {
+                                typing = false;
+                                msgs.push({ role: 'ai', content: aiMsg });
+                                renderChat();
+                                return;
+                            }
+                            const chunk = decoder.decode(value, { stream: true });
+                            const lines = chunk.split('\n');
+                            for (const line of lines) {
+                                if (line.startsWith('data: ')) {
+                                    const data = line.slice(6);
+                                    if (data === '[DONE]') continue;
+                                    try {
+                                        const json = JSON.parse(data);
+                                        const content = json.choices[0]?.delta?.content;
+                                        if (content) {
+                                            aiMsg += content;
+                                            msgs[msgs.length - 1] = { role: 'ai', content: aiMsg };
+                                            renderChat();
+                                        }
+                                    } catch (e) {}
+                                }
+                            }
+                            readChunk();
+                        }).catch(err => {
+                            typing = false;
+                            msgs.push({ role: 'ai', content: `Error: ${err.message}` });
+                            renderChat();
+                        });
+                    }
+                    readChunk();
+                }).catch(err => {
+                    typing = false;
+                    msgs.push({ role: 'ai', content: `Error: ${err.message}` });
+                    renderChat();
+                });
+            } else {
+                // Demo mode
+                setTimeout(() => { typing = false; msgs.push({ role: 'ai', content: `[${curModel}] I received: "${txt}" — Arxon is online and ready to go deeper. Ask me anything.` }); renderChat(); }, 1400);
+            }
+        }
+        function initFullChat() {
+            renderChat();
+            document.getElementById('fullChatSendBtn').onclick = sendMsg;
+            document.getElementById('fullChatInput').onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } };
+            document.getElementById('clearChatBtn').onclick = () => { msgs = [{ role: 'ai', content: "✨ Conversation cleared. How can I help you next?" }]; renderChat(); };
+            document.getElementById('shareChatBtn').onclick = () => alert('📋 Share:\n' + msgs.slice(-3).map(m => `${m.role}: ${m.content.slice(0, 80)}`).join('\n'));
+        }
+
+        // ===== SETTINGS =====
+        function initSettings() {
+            const qf = document.getElementById('quotaFill');
+            if (qf) setTimeout(() => qf.style.width = '48%', 100);
+            document.querySelectorAll('.settings-nav button').forEach(b => {
+                b.onclick = () => {
+                    document.querySelectorAll('.settings-nav button').forEach(x => x.classList.remove('active-sett'));
+                    b.classList.add('active-sett');
+                    ['appearance-settings', 'quota-settings', 'api-settings', 'notifications', 'danger-settings'].forEach(id => document.getElementById(id).style.display = 'none');
+                    const map = { appearance: 'appearance-settings', quota: 'quota-settings', api: 'api-settings', notifications: 'notifications', danger: 'danger-settings' };
+                    document.getElementById(map[b.dataset.settings]).style.display = 'block';
+                };
+            });
+            document.getElementById('darkLightToggleSettings')?.addEventListener('click', toggleTheme);
+            document.getElementById('saveNotifBtn')?.addEventListener('click', () => alert('Preferences saved!'));
+            document.getElementById('deleteAccountBtn')?.addEventListener('click', () => { if (confirm('Permanently delete your account?')) alert('Deletion requested (demo mode).'); });
+            // API Key handling
+            const apiKeyInput = document.getElementById('apiKeyInput');
+            const apiKeyStatus = document.getElementById('apiKeyStatus');
+            const savedKey = localStorage.getItem('arxon-api-key');
+            if (savedKey) {
+                apiKeyInput.value = savedKey;
+                apiKeyStatus.textContent = 'API Key set. Chat will use real API.';
+            }
+            document.getElementById('saveApiKeyBtn')?.addEventListener('click', () => {
+                const key = apiKeyInput.value.trim();
+                if (key) {
+                    localStorage.setItem('arxon-api-key', key);
+                    apiKeyStatus.textContent = 'API Key saved. Chat will use real API.';
+                } else {
+                    localStorage.removeItem('arxon-api-key');
+                    apiKeyStatus.textContent = 'API Key not set. Chat will use demo mode.';
+                }
+            });
+        }
+        function toggleTheme() { document.body.classList.toggle('light'); localStorage.setItem('arxon-theme', document.body.classList.contains('light') ? 'light' : 'dark'); }
+        if (localStorage.getItem('arxon-theme') === 'light') document.body.classList.add('light');
+        document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+        document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
+
+        // ===== API PAGE =====
+        function initApi() {
+            const snips = {
+                python: `import openai\n\nopenai.api_base = "https://arxon.armanxai.com/api/v1"\nopenai.api_key  = "sk-your-key-here"\n\nresponse = openai.ChatCompletion.create(\n    model="armanxai/main",\n    messages=[{"role": "user", "content": "Hello, Arxon!"}],\n    stream=True\n)\n\nfor chunk in response:\n    print(chunk.choices[0].delta.get("content", ""), end="")`,
+                js: `const res = await fetch("https://arxon.armanxai.com/api/v1/chat/completions", {\n  method: "POST",\n  headers: {\n    "Authorization": "Bearer sk-your-key-here",\n    "Content-Type": "application/json"\n  },\n  body: JSON.stringify({\n    model: "armanxai/main",\n    messages: [{ role: "user", content: "Hello, Arxon!" }],\n    stream: true\n  })\n});\n\nconst reader = res.body.getReader();\n// read chunks...`,
+                curl: `curl -X POST https://arxon.armanxai.com/api/v1/chat/completions \\\n  -H "Authorization: Bearer sk-your-key-here" \\\n  -H "Content-Type: application/json" \\\n  -d '{\n    "model": "armanxai/main",\n    "messages": [{"role": "user", "content": "Hello, Arxon!"}],\n    "stream": true\n  }'`
+            };
+            const cb = document.getElementById('codeBlock');
+            document.querySelectorAll('.code-tab').forEach(tab => {
+                tab.onclick = () => { document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active')); tab.classList.add('active'); cb.innerText = snips[tab.dataset.lang] || snips.python; };
+            });
+        }
+
+        // ===== FLOATING WIDGET =====
+        let wState = 'loader', wLoggedIn = false, wMsgs = [], wModel = 'Arxon Main';
+        const wContainer = document.getElementById('chatWidget');
+        const wInner = document.getElementById('widgetInner');
+        function openWidget() { wContainer.classList.remove('hidden'); setTimeout(() => wContainer.classList.add('visible'), 10); renderWidget(); }
+        function closeWidget() { wContainer.classList.remove('visible'); setTimeout(() => wContainer.classList.add('hidden'), 350); }
+        document.getElementById('chatFabBtn')?.addEventListener('click', openWidget);
+        document.getElementById('closeWidgetBtn')?.addEventListener('click', closeWidget);
+
+        function renderWidget() {
+            if (wState === 'loader') {
+                wInner.innerHTML = `<div class="loader-state"><div class="pre-ring"></div><p>LAUNCHING ARXON</p></div>`;
+                setTimeout(() => { wState = 'login'; renderWidget(); }, 1200);
+            } else if (wState === 'login') {
+                wInner.innerHTML = `<div class="login-state"><div style="font-size:3rem">✦</div><h3>Welcome back</h3><p>Sign in to start chatting with Arxon AI</p><input type="email" id="wEmail" placeholder="your@email.com"><button id="wLoginBtn" class="btn btn-primary" style="width:280px;justify-content:center">Unlock Arxon →</button><p style="font-size:0.73rem;color:var(--text3)">Demo: any email works</p></div>`;
+                document.getElementById('wLoginBtn')?.addEventListener('click', () => {
+                    const e = document.getElementById('wEmail')?.value.trim();
+                    if (e) { wLoggedIn = true; wState = 'chat'; wMsgs = [{ role: 'ai', content: "Hi! I'm Arxon. How can I help you today?" }]; renderWidget(); }
+                    else alert('Please enter an email.');
+                });
+            } else if (wState === 'chat') {
+                const mHtml = wMsgs.map(m => `<div class="msg-bubble msg-${m.role}">${esc(m.content)}</div>`).join('');
+                wInner.innerHTML = `
+      <div class="widget-model-bar">${models.map(m => `<div class="model-chip ${wModel === m ? 'active' : ''}" data-model="${m}">${m}</div>`).join('')}</div>
+      <div class="widget-body" id="wBody">${mHtml}</div>
+      <div class="widget-input"><textarea id="wInput" rows="1" placeholder="Ask Arxon anything…"></textarea><button id="wSend" class="widget-send">↑</button></div>`;
+                const wb = document.getElementById('wBody');
+                if (wb) wb.scrollTop = wb.scrollHeight;
+                document.querySelectorAll('.widget-model-bar .model-chip').forEach(c => c.onclick = e => { wModel = e.target.dataset.model; renderWidget(); });
+                document.getElementById('wSend')?.addEventListener('click', sendWidget);
+                document.getElementById('wInput')?.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendWidget(); } });
+            }
+        }
+        function sendWidget() {
+            const inp = document.getElementById('wInput');
+            const txt = inp?.value.trim();
+            if (!txt) return;
+            wMsgs.push({ role: 'user', content: txt }); inp.value = ''; renderWidget();
+            const apiKey = localStorage.getItem('arxon-api-key');
+            if (apiKey) {
+                // Real API call
+                fetch('https://arxon.armanxai.com/api/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: modelMap[wModel],
+                        messages: wMsgs.slice(-10),
+                        stream: true
+                    })
+                }).then(res => {
+                    if (!res.ok) throw new Error(`API Error: ${res.status}`);
+                    const reader = res.body.getReader();
+                    const decoder = new TextDecoder();
+                    let aiMsg = '';
+                    function readChunk() {
+                        reader.read().then(({ done, value }) => {
+                            if (done) {
+                                wMsgs.push({ role: 'ai', content: aiMsg });
+                                renderWidget();
+                                return;
+                            }
+                            const chunk = decoder.decode(value, { stream: true });
+                            const lines = chunk.split('\n');
+                            for (const line of lines) {
+                                if (line.startsWith('data: ')) {
+                                    const data = line.slice(6);
+                                    if (data === '[DONE]') continue;
+                                    try {
+                                        const json = JSON.parse(data);
+                                        const content = json.choices[0]?.delta?.content;
+                                        if (content) {
+                                            aiMsg += content;
+                                            wMsgs[wMsgs.length - 1] = { role: 'ai', content: aiMsg };
+                                            renderWidget();
+                                        }
+                                    } catch (e) {}
+                                }
+                            }
+                            readChunk();
+                        }).catch(err => {
+                            wMsgs.push({ role: 'ai', content: `Error: ${err.message}` });
+                            renderWidget();
+                        });
+                    }
+                    readChunk();
+                }).catch(err => {
+                    wMsgs.push({ role: 'ai', content: `Error: ${err.message}` });
+                    renderWidget();
+                });
+            } else {
+                // Demo mode
+                setTimeout(() => { wMsgs.push({ role: 'ai', content: `${wModel}: I got your message — "${txt}". Need more depth?` }); renderWidget(); }, 1000);
+            }
+        }
+
+        // ===== GLOBAL MODAL =====
+        const gModal = document.getElementById('globalLoginModal');
+        document.getElementById('closeGlobalModal')?.addEventListener('click', () => gModal.classList.remove('active'));
+        document.getElementById('globalLoginBtn')?.addEventListener('click', () => {
+            const e = document.getElementById('globalEmail')?.value.trim();
+            if (e) { gModal.classList.remove('active'); alert(`✦ Welcome! You now have access, ${e}.`); }
+            else alert('Please enter your email.');
+        });
+        gModal.addEventListener('click', e => { if (e.target === gModal) gModal.classList.remove('active'); });
+        setTimeout(() => gModal.classList.add('active'), 2800);
+    </script>
+</body>
+
+</html>
